@@ -1,1 +1,1 @@
-# Custom hibernate session filters with Spring Data and AOP
+# Hibernate session filters with Spring Data and AOP

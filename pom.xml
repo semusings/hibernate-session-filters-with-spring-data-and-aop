@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>io.github.bhuwanupadhyay</groupId>
-	<artifactId>eg-1-custom-hibernate-session-filters-with-spring-data-and-aop</artifactId>
+	<artifactId>eg-1-hibernate-session-filters-with-spring-data-and-aop</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>eg-1-custom-hibernate-session-filters-with-spring-data-and-aop</name>
+	<name>eg-1-hibernate-session-filters-with-spring-data-and-aop</name>
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
