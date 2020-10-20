@@ -1,5 +1,6 @@
 package io.github.bhuwanupadhyay.eg1.aop;
 
+import io.github.bhuwanupadhyay.eg1.core.AbstractEntity;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -19,7 +20,9 @@ import java.util.Objects;
 public class RepositoryCreatedByAdvisor {
 
 	public static final String DEFAULT = "DEFAULT";
+
 	private static final Logger LOG = LoggerFactory.getLogger(RepositoryCreatedByAdvisor.class);
+
 	@PersistenceContext
 	private final EntityManager entityManager;
 
@@ -40,15 +43,15 @@ public class RepositoryCreatedByAdvisor {
 		boolean hasSession = Objects.nonNull(session);
 
 		if (hasSession) {
-			LOG.debug("created by filter enabled with createdBy: {}", DEFAULT);
-			Filter createdByFilter = session.enableFilter("createdByFilter");
-			createdByFilter.setParameter("createdBy", DEFAULT);
+			LOG.debug("Hibernate session filter enabled with createdBy: {}", DEFAULT);
+			Filter filter = session.enableFilter(AbstractEntity.CREATED_BY_FILTER);
+			filter.setParameter(AbstractEntity.CREATED_BY_PARAM, DEFAULT);
 		}
 
 		Object obj = joinPoint.proceed();
 
 		if (hasSession) {
-			session.disableFilter("createdByFilter");
+			session.disableFilter(AbstractEntity.CREATED_BY_FILTER);
 		}
 
 		return obj;
