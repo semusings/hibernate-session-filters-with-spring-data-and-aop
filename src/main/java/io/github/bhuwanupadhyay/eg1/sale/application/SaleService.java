@@ -1,5 +1,6 @@
 package io.github.bhuwanupadhyay.eg1.sale.application;
 
+import io.github.bhuwanupadhyay.eg1.core.LoggedInUser;
 import io.github.bhuwanupadhyay.eg1.sale.domain.Sale;
 import io.github.bhuwanupadhyay.eg1.sale.domain.Sale.Status;
 import io.github.bhuwanupadhyay.eg1.sale.domain.SaleRepository;
@@ -10,8 +11,11 @@ public class SaleService {
 
 	private final SaleRepository repository;
 
-	public SaleService(SaleRepository repository) {
+	private final LoggedInUser loggedInUser;
+
+	public SaleService(SaleRepository repository, LoggedInUser loggedInUser) {
 		this.repository = repository;
+		this.loggedInUser = loggedInUser;
 	}
 
 	public Sale placeOrder(String itemId, Integer quantity) {
@@ -19,6 +23,7 @@ public class SaleService {
 		sale.setItemId(itemId);
 		sale.setQuantity(quantity);
 		sale.setStatus(Status.INITIAL);
+		sale.setCreatedBy(loggedInUser.userId());
 		return repository.save(sale);
 	}
 

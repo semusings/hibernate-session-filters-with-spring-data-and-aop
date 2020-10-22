@@ -9,14 +9,14 @@ import java.util.Objects;
 
 // @formatter:on
 @FilterDefs({
-		@FilterDef(
-				name = AbstractEntity.CREATED_BY_FILTER,
-				parameters = { @ParamDef(name = AbstractEntity.CREATED_BY_PARAM, type = "string") })
+	@FilterDef(
+		name = AbstractEntity.CREATED_BY_FILTER,
+		parameters = { @ParamDef(name = AbstractEntity.CREATED_BY_PARAM, type = "string") })
 })
 @Filters({
-		@Filter(
-				name = AbstractEntity.CREATED_BY_FILTER,
-				condition = ":" + AbstractEntity.CREATED_BY_PARAM + " = " + AbstractEntity.CREATED_BY_COLUMN)
+	@Filter(
+		name = AbstractEntity.CREATED_BY_FILTER,
+		condition = ":" + AbstractEntity.CREATED_BY_PARAM + " = " + AbstractEntity.CREATED_BY_COLUMN)
 })
 // @formatter:off
 @MappedSuperclass
@@ -42,6 +42,10 @@ public abstract class AbstractEntity implements Serializable {
 
 	public String getCreatedBy() {
 		return createdBy;
+	}
+
+	public void setCreatedBy(String createdBy) {
+		this.createdBy = createdBy;
 	}
 
 	@Override

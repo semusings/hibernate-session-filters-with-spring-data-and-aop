@@ -1,6 +1,7 @@
 package io.github.bhuwanupadhyay.eg1.aop;
 
 import io.github.bhuwanupadhyay.eg1.core.AbstractEntity;
+import io.github.bhuwanupadhyay.eg1.core.LoggedInUser;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -19,15 +20,15 @@ import java.util.Objects;
 @Component
 public class RepositoryCreatedByAdvisor {
 
-	public static final String DEFAULT = "DEFAULT";
-
 	private static final Logger LOG = LoggerFactory.getLogger(RepositoryCreatedByAdvisor.class);
 
 	@PersistenceContext
 	private final EntityManager entityManager;
+	private final LoggedInUser loggedInUser;
 
-	public RepositoryCreatedByAdvisor(EntityManager entityManager) {
+	public RepositoryCreatedByAdvisor(EntityManager entityManager, LoggedInUser loggedInUser) {
 		this.entityManager = entityManager;
+		this.loggedInUser = loggedInUser;
 	}
 
 	@Pointcut("execution(* io.github.bhuwanupadhyay.eg1.core.DataRepository+.*(..))"
@@ -43,9 +44,9 @@ public class RepositoryCreatedByAdvisor {
 		boolean hasSession = Objects.nonNull(session);
 
 		if (hasSession) {
-			LOG.debug("Hibernate session filter enabled with createdBy: {}", DEFAULT);
+			LOG.debug("Hibernate session filter enabled with createdBy: {}", loggedInUser.userId());
 			Filter filter = session.enableFilter(AbstractEntity.CREATED_BY_FILTER);
-			filter.setParameter(AbstractEntity.CREATED_BY_PARAM, DEFAULT);
+			filter.setParameter(AbstractEntity.CREATED_BY_PARAM, loggedInUser.userId());
 		}
 
 		Object obj = joinPoint.proceed();
