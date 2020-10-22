@@ -8,16 +8,10 @@ import java.io.Serializable;
 import java.util.Objects;
 
 // @formatter:on
-@FilterDefs({
-	@FilterDef(
-		name = AbstractEntity.CREATED_BY_FILTER,
-		parameters = { @ParamDef(name = AbstractEntity.CREATED_BY_PARAM, type = "string") })
-})
-@Filters({
-	@Filter(
-		name = AbstractEntity.CREATED_BY_FILTER,
-		condition = ":" + AbstractEntity.CREATED_BY_PARAM + " = " + AbstractEntity.CREATED_BY_COLUMN)
-})
+@FilterDefs({ @FilterDef(name = AbstractEntity.CREATED_BY_FILTER,
+		parameters = { @ParamDef(name = AbstractEntity.CREATED_BY_PARAM, type = "string") }) })
+@Filters({ @Filter(name = AbstractEntity.CREATED_BY_FILTER,
+		condition = ":" + AbstractEntity.CREATED_BY_PARAM + " = " + AbstractEntity.CREATED_BY_COLUMN) })
 // @formatter:off
 @MappedSuperclass
 @Access(AccessType.FIELD)

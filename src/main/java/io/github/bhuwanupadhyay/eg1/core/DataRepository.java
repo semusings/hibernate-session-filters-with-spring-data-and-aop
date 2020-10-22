@@ -7,8 +7,8 @@ import java.util.Optional;
 @NoRepositoryBean
 public interface DataRepository<T, ID> {
 
-    T save(T entity);
+	T save(T entity);
 
-    Optional<T> findOne(ID id);
+	Optional<T> findOne(ID id);
 
 }

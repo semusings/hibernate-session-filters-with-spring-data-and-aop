@@ -6,7 +6,8 @@ import java.util.List;
 
 public interface SaleRepository extends DataRepository<Sale, Long> {
 
-    List<Sale> findAllDelivered();
+	List<Sale> findAllDelivered();
 
-    List<Sale> findAllCancelled();
+	List<Sale> findAllCancelled();
+
 }

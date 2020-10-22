@@ -24,6 +24,7 @@ public class RepositoryCreatedByAdvisor {
 
 	@PersistenceContext
 	private final EntityManager entityManager;
+
 	private final LoggedInUser loggedInUser;
 
 	public RepositoryCreatedByAdvisor(EntityManager entityManager, LoggedInUser loggedInUser) {

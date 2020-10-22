@@ -41,6 +41,6 @@ public class Sale extends AbstractEntity {
 
 		INITIAL, DELIVERED, CANCELLED
 
-    }
+	}
 
 }

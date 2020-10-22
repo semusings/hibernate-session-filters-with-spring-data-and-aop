@@ -14,9 +14,8 @@ public class EgApplication {
 		SpringApplication.run(EgApplication.class, args);
 	}
 
-
 	@Bean
-	public LoggedInUser loggedInUser (){
+	public LoggedInUser loggedInUser() {
 		return () -> "default";
 	}
 
